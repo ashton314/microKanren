@@ -58,8 +58,10 @@
 (define (mplus $₁ $₂)
   (cond
     [(null? $₁) $₂]
-    ;; Return a thunk to implement lazy "immature" streams
-    [(procedure? $₁) (λ () (mplus ($₁) $₂))]
+    ;; Return a thunk to implement lazy "immature" streams.
+    ;; Note how we swap the order of $₁ and $₂ to interleave the
+    ;; streams.
+    [(procedure? $₁) (λ () (mplus ($₂) $₁))]
     [else (cons (car $1) (mplus (cdr $₁) $₂))]))
 
 (define (bind $ g)
