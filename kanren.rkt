@@ -20,7 +20,7 @@
     (if pr (walk (cdr pr) s) u)))
 
 ;; Extend a variable
-(define (ext-s x v s) `((,x . v) . ,s))
+(define (ext-s x v s) `((,x . ,v) . ,s))
 
 ;; equiv constructors (the symbol ≡ can be typed `\equiv` when TeX
 ;; input is turned on in Emacs)
@@ -30,7 +30,7 @@
       (if s (unit `(,s . ,(cdr s/c))) mzero))))
 
 ;; An alias for ease of typing
-(define equiv ≡)
+(define == ≡)
 
 ;; I think these constructs function essentially as the `unit` in the
 ;; list monad. See also bind and mplus.
@@ -67,7 +67,7 @@
     ;; Return a thunk to implement lazy "immature" streams.
     ;; Note how we swap the order of $₁ and $₂ to interleave the
     ;; streams.
-    [(procedure? $₁) (λ () (mplus ($₂) $₁))]
+    [(procedure? $₁) (λ () (mplus $₂ ($₁)))]
     [else (cons (car $₁) (mplus (cdr $₁) $₂))]))
 
 (define (bind $ g)
