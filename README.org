@@ -1,0 +1,6 @@
+#+TITLE: µKanren
+#+AUTHOR: Ashton Wiersdorf
+
+Implementation of µKanren (microKanren) as presented in [[http://webyrd.net/scheme-2013/papers/HemannMuKanren2013.pdf][this paper]] by Hemann and Friedman.
+
+See [[file:playground.rkt]] for a small demo of how to use it.
