@@ -58,11 +58,14 @@
 (define (mplus $₁ $₂)
   (cond
     [(null? $₁) $₂]
+    ;; Return a thunk to implement lazy "immature" streams
+    [(procedure? $₁) (λ () (mplus ($₁) $₂))]
     [else (cons (car $1) (mplus (cdr $₁) $₂))]))
 
 (define (bind $ g)
   (cond
     [(null? $) mzero]
+    [(procedure? $) (λ () (bind ($) g))]
     [else (mplus (g (car $)) (bind (cdr $) g))]))
 
 ;; Needed because Racket doesn't implement R6RS's assp function
