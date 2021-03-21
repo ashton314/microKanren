@@ -62,7 +62,7 @@
     ;; Note how we swap the order of $₁ and $₂ to interleave the
     ;; streams.
     [(procedure? $₁) (λ () (mplus ($₂) $₁))]
-    [else (cons (car $1) (mplus (cdr $₁) $₂))]))
+    [else (cons (car $₁) (mplus (cdr $₁) $₂))]))
 
 (define (bind $ g)
   (cond
